@@ -16,8 +16,8 @@ void close_window_cb(Fl_Widget *, void *);
 
 using namespace std;
 
-#define WIN_WIDTH  320
-#define WIN_HEIGHT 200
+#define WIN_WIDTH  340
+#define WIN_HEIGHT 180
 #define BTN_WIDTH  60
 #define BTN_HEIGHT 28
 
@@ -33,14 +33,14 @@ Fl_Window *create_about_window()
 
     Fl_Pack* p2 = new Fl_Pack(0,0,0,0);
     p2->spacing(1);
-    Fl_Box* ab3 = new Fl_Box(0,0,0,18,"Copyright (c) 2005, 2006  Warren Weckesser");
+    Fl_Box* ab3 = new Fl_Box(0,0,0,18,"Copyright (c) 2005, 2006, 2012  Warren Weckesser");
     ab3->labelsize(12);
-    Fl_Box* ab4 = new Fl_Box(0,0,0,18,"Department of Mathematics");
+    Fl_Box* ab4 = new Fl_Box(0,0,0,18,"www.warrenweckesser.net");
     ab4->labelsize(12);
-    Fl_Box* ab5 = new Fl_Box(0,0,0,18,"Colgate University");
-    ab5->labelsize(12);
-    Fl_Box* ab6 = new Fl_Box(0,0,0,18,"Hamilton, NY, USA");
-    ab6->labelsize(12);
+    // Fl_Box* ab5 = new Fl_Box(0,0,0,18,"https://github.com/WarrenWeckesser/cardiff");
+    // ab5->labelsize(12);
+    // Fl_Box* ab6 = new Fl_Box(0,0,0,18,"---");
+    // ab6->labelsize(12);
     p2->end();
     p1->end();
     Fl_Button* abb = new Fl_Button((WIN_WIDTH-BTN_WIDTH)/2,WIN_HEIGHT-BTN_HEIGHT-5,BTN_WIDTH,BTN_HEIGHT,"Close");
