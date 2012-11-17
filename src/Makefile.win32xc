@@ -1,0 +1,27 @@
+#
+# Makefile.win32xc
+#
+# For building cardiff.exe by cross-compiling in Linux.
+#
+
+MINGWLIB=/usr/i586-mingw32msvc/lib
+FLTK_XC_WIN_LIBS=$(MINGWLIB)/libgdi32.a $(MINGWLIB)/libole32.a $(MINGWLIB)/libuuid.a $(MINGWLIB)/libcomctl32.a $(MINGWLIB)/libwsock32.a
+
+WINXCDIR=$(HOME)/WinCrossCompile/local
+
+COBJOBJ = ca_util.obj ca_iterate.obj ca_initmatrix.obj ca_printmatrix.obj ca_save_tiff_cb.obj ca_create_about_window.obj
+
+cardiff.exe: ca_fltk.obj $(COBJOBJ)
+	i586-mingw32msvc-g++ ca_fltk.obj $(COBJOBJ) $(WINXCDIR)/lib/libfltk.a $(WINXCDIR)/lib/libtiff.a $(FLTK_XC_WIN_LIBS) -mwindows -o cardiff.exe
+
+ca_fltk.obj: ca_fltk.cpp ca.h
+	i586-mingw32msvc-g++ -c -o ca_fltk.obj -I$(WINXCDIR)/include ca_fltk.cpp
+
+ca_create_about_window.obj: ca_create_about_window.cpp ca.h
+	i586-mingw32msvc-g++ -c -o ca_create_about_window.obj -I$(WINXCDIR)/include ca_create_about_window.cpp
+
+%.obj:  %.c ca.h
+	i586-mingw32msvc-g++ -c -o $@ -I$(WINXCDIR)/include $<
+
+clean:
+	rm -f *.obj

@@ -1,0 +1,20 @@
+#
+# cardiff.list  -- This file is for use with epm.
+#
+# Example:
+#
+# $ sudo epm -f native cardiff
+#
+# On an intel pc running ubuntu or debian with 2.6 kernel, this
+# create the directory linux-2.6-intel, and the file
+# cardiff-1-linux-2.6-intel.deb
+#
+%product Cardiff
+%copyright 2005-2006 by Warren Weckesser
+%vendor Warren Weckesser
+%license LICENSE
+%readme LICENSE
+%description A Cellular Automaton Reaction Diffusion Program
+%version 1
+
+f 0755 root sys /usr/bin/cardiff cardiff

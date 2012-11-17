@@ -1,0 +1,26 @@
+
+
+TIFFDIR=$(HOME)/mylocal
+FLTKDIR=$(HOME)/mylocal
+MACLIBS=-framework Carbon -framework ApplicationServices
+
+COBJ = ca_util.o ca_iterate.o ca_initmatrix.o ca_printmatrix.o ca_save_tiff_cb.o
+CPPOBJ = ca_create_about_window.o
+
+CFLAGS = -I$(TIFFDIR)/include -I$(FLTKDIR)/include -O3
+CPPFLAGS = $(CFLAGS)
+
+Cardiff: ca_fltk.o $(COBJ) $(CPPOBJ)
+	g++ ca_fltk.o $(COBJ) $(CPPOBJ)  $(TIFFDIR)/lib/libtiff.a $(FLTKDIR)/lib/libfltk.a $(MACLIBS) -o Cardiff
+
+ca_fltk.o:  ca_fltk.cpp ca.h
+	g++ -c -o $@ $(CFLAGS) $<
+
+ca_create_about_window.o:  ca_create_about_window.cpp ca.h
+	g++ -c -o $@ $(CPPFLAGS) $<
+
+%.o:  %.c ca.h
+	g++ -c -o $@ $(CFLAGS) $<
+
+clean:
+	rm -f *.o

@@ -1,0 +1,31 @@
+
+# Requires fltk and libtiff.
+#
+# fltk-config must be in the command PATH.
+
+
+COBJ = ca_util.o ca_iterate.o ca_initmatrix.o ca_printmatrix.o ca_save_tiff_cb.o
+CPPOBJ = ca_create_about_window.o
+
+
+#CFLAGS = -I$(TIFFDIR)/include `fltk-config --cxxflags`
+CFLAGS = `fltk-config --cxxflags`
+CPPFLAGS = $(CFLAGS)
+
+cardiff: ca_fltk.o $(COBJ) $(CPPOBJ)
+	g++ ca_fltk.o $(COBJ) $(CPPOBJ) -ltiff `fltk-config --ldflags` -o cardiff
+
+#cardiff_static:  ca_fltk.o $(COBJ) $(CPPOBJ)
+#	g++ ca_fltk.o $(COBJ) $(CPPOBJ) $(TIFFDIR)/lib/libtiff.a $(TIFFDIR)/lib/libjpeg.a $(TIFFDIR)/lib/libz.a `fltk-config --ldstaticflags` -o cardiff_static
+
+ca_fltk.o:  ca_fltk.cpp ca.h
+	g++ -c -o $@ $(CFLAGS) $<
+
+ca_create_about_window.o:  ca_create_about_window.cpp ca.h
+	g++ -c -o $@ $(CPPFLAGS) $<
+
+%.o:  %.c ca.h
+	g++ -c -o $@ $(CFLAGS) $<
+
+clean:
+	rm -f *.o

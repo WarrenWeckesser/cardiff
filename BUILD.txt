@@ -1,0 +1,25 @@
+This program requires FLTK and libtiff.
+
+The following instructions (and the corresponding
+Makefiles) are not up-to-date.
+
+Build the program using a Makefile in the src directory.
+
+For cross-compiling in Linx for Windows:
+$ make -f Makefile.win32xc
+
+For building the executable on the Mac laptop:
+$ make -f Makefile.mac
+$ mv Cardiff Cardiff.app/Contents/MacOS
+To export the Mac application:
+$ rm -rf ~/tmp/Cardiff.app
+$ svn export Cardiff.app ~/tmp/Cardiff.app
+Then zip up the Cardiff.app directory in ~/tmp. (Or use
+StuffIt, or some other archiving mechanism.)
+
+For Linux, dynamically linked:
+$ make -f Makefile.linux
+For statically linked (still testing this):
+$ make -f Makefile.linux cardiff_static
+
+
