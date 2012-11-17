@@ -1,0 +1,3 @@
+This directory contains the skeleton of a Mac OSX app.
+The executable should be called Cardiff and put in
+Cardiff.app/Contents/MacOS/
