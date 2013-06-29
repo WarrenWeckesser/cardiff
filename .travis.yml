@@ -1,0 +1,6 @@
+
+before_install:
+ - sudo apt-get update -qq
+ - sudo apt-get install libtiff4-dev libtiff4 libfltk1.3-dev libfltk1.3
+script:
+ - make -C ./src -f Makefile.linux
