@@ -53,7 +53,7 @@ void save_tiff_cb(Fl_Widget *w, void *data)
         msgicon->color(FL_YELLOW);
         char buf[256];
         snprintf(buf,255,"Could not open %s for writing.\n",fc->value());
-        fl_alert(buf);
+        fl_alert("%s", buf);
         delete fc;
         return;
         }
